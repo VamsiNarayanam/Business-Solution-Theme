@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer dashboard — Stackly Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
+</head>
+<body class="dashboard-page dashboard-page--customer">
+  <div class="dashboard-backdrop" data-dash-backdrop aria-hidden="true"></div>
+
+  <div class="dashboard-shell">
+    <aside class="dashboard-sidebar-pro" data-dash-sidebar id="dash-sidebar" aria-label="Account sidebar">
+      <div class="dashboard-sidebar-pro__brand">
+        <strong>Client portal</strong>
+        <span>Northwind Labs</span>
+      </div>
+      <ul class="dashboard-nav-pro">
+        <li><a href="#profile" class="is-active">Profile</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#services">Requested services</a></li>
+        <li><a href="#messages">Messages</a></li>
+        <li><a href="#payments">Payments</a></li>
+        <li><a href="#tracking">Service tracking</a></li>
+      </ul>
+    </aside>
+
+    <div class="dashboard-main-pro">
+      <button type="button" class="dash-sidebar-toggle" data-dash-sidebar-toggle aria-expanded="false" aria-controls="dash-sidebar">☰ Menu</button>
+
+      <div class="dashboard-top" id="profile">
+        <div>
+          <h1>Your workspace</h1>
+          <p style="margin:0.35rem 0 0;font-size:0.95rem;color:var(--color-muted)">Track engagements, messages, and delivery in one place.</p>
+        </div>
+        <a class="btn btn--outline-dark" href="contact.html">Contact support</a>
+      </div>
+
+      <section class="customer-dash-hero" aria-label="Welcome">
+        <div>
+          <h2 class="customer-dash-hero__title">Welcome to the portal</h2>
+          <p class="customer-dash-hero__meta">Your design sprint is on track for the Apr 12 checkpoint. Next touchpoint: stakeholder readout scheduling.</p>
+        </div>
+        <div class="customer-dash-hero__actions">
+          <a class="btn btn--primary" href="services.html">Request a service</a>
+          <a class="btn" href="login.html">Sign out</a>
+        </div>
+      </section>
+
+      <div class="dash-stat-grid" aria-label="Your snapshot">
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Active engagements</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--flat">Open now</span>
+          </div>
+          <span class="dash-stat-card__value">2</span>
+          <span class="dash-stat-card__hint">3 programs all-time · 1 completed</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Unread messages</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--up">New</span>
+          </div>
+          <span class="dash-stat-card__value">1</span>
+          <span class="dash-stat-card__hint">From your delivery team</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Next invoice</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--flat">Apr 20</span>
+          </div>
+          <span class="dash-stat-card__value">$5.9k</span>
+          <span class="dash-stat-card__hint">Growth plan installment</span>
+        </div>
+      </div>
+
+      <div class="dashboard-panel" id="profile-detail">
+        <div class="dashboard-panel__head">Profile</div>
+        <div class="dashboard-panel__body two-col-dash" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start">
+          <div>
+            <p style="margin:0 0 0.5rem"><strong>Organization</strong></p>
+            <p style="margin:0;color:var(--color-muted)">Northwind Labs</p>
+            <p style="margin:1.25rem 0 0.5rem"><strong>Primary contact</strong></p>
+            <p style="margin:0;color:var(--color-muted)">Sarah Chen · s.chen@northwind.example</p>
+          </div>
+          <div>
+            <p style="margin:0 0 0.5rem"><strong>Plan</strong></p>
+            <p style="margin:0;color:var(--color-muted)">Growth · Renewal Jun 2026</p>
+            <p style="margin:1rem 0 0;font-size:0.88rem;color:var(--color-muted)">Need changes? Your CSM can update seats and billing in one business day.</p>
+          </div>
+        </div>
+      </div>
+
+      <section id="insights" aria-labelledby="insights-heading">
+        <h2 class="visually-hidden" id="insights-heading">Insights</h2>
+        <div class="dash-chart-grid">
+        <div class="dashboard-panel dash-chart-panel">
+          <div class="dashboard-panel__head">
+            <span>Your services mix</span>
+            <span class="dash-chart-panel__sub">By status (demo data)</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body dash-chart-panel__body--tall">
+            <canvas id="customer-chart-status" aria-label="Polar chart of service status mix"></canvas>
+          </div>
+        </div>
+        <div class="dashboard-panel dash-chart-panel">
+          <div class="dashboard-panel__head">
+            <span>Engagement progress</span>
+            <span class="dash-chart-panel__sub">Milestones for your primary program</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body dash-chart-panel__body--tall">
+            <canvas id="customer-chart-phases" aria-label="Horizontal bar chart of milestone completion"></canvas>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <div class="dashboard-panel" id="services">
+        <div class="dashboard-panel__head">Requested services</div>
+        <div class="dashboard-panel__body" style="overflow-x:auto">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Requested</th>
+                <th>Owner</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Business analytics</td>
+                <td>Mar 18, 2026</td>
+                <td>M. Okonkwo</td>
+                <td><span class="badge badge--info">In progress</span></td>
+              </tr>
+              <tr>
+                <td>Marketing strategy</td>
+                <td>Feb 2, 2026</td>
+                <td>E. Vasquez</td>
+                <td><span class="badge badge--success">Complete</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="two-col-dash">
+        <div class="dashboard-panel" id="messages">
+          <div class="dashboard-panel__head">Messages</div>
+          <div class="dashboard-panel__body">
+            <ul class="msg-thread">
+              <li class="msg-thread__item">
+                <span class="msg-thread__from">Meridian team</span>
+                <p class="msg-thread__text">Workshop materials for April 14 are uploaded to your workspace.</p>
+                <span class="msg-thread__time">Apr 2, 2026</span>
+              </li>
+              <li class="msg-thread__item">
+                <span class="msg-thread__from">You</span>
+                <p class="msg-thread__text">Please add APAC stakeholders to the steering distribution list.</p>
+                <span class="msg-thread__time">Mar 30, 2026</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dashboard-panel" id="payments">
+          <div class="dashboard-panel__head">Payments</div>
+          <div class="dashboard-panel__body" style="overflow-x:auto">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Invoice</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>INV-2026-014</td>
+                  <td>$5,900</td>
+                  <td><span class="badge badge--success">Paid</span></td>
+                </tr>
+                <tr>
+                  <td>INV-2026-013</td>
+                  <td>$5,900</td>
+                  <td><span class="badge badge--success">Paid</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-panel" id="tracking">
+        <div class="dashboard-panel__head">Service tracking</div>
+        <div class="dashboard-panel__body">
+          <ul class="dash-progress-list">
+            <li class="is-done">
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Discovery</strong>
+                <span>Wrapped Mar 10 — goals and success metrics signed off.</span>
+              </div>
+            </li>
+            <li class="is-active">
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Design sprint</strong>
+                <span>In progress — target completion Apr 12.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Stakeholder readout</strong>
+                <span>Scheduled Apr 18 — agenda shared this week.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dash-progress-list__dot" aria-hidden="true"></span>
+              <div class="dash-progress-list__body">
+                <strong>Handover &amp; training</strong>
+                <span>Planned for May — materials drafted after readout.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

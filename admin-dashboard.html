@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin dashboard — Stackly Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
+</head>
+<body class="dashboard-page dashboard-page--admin">
+  <div class="dashboard-backdrop" data-dash-backdrop aria-hidden="true"></div>
+
+  <div class="dashboard-shell">
+    <aside class="dashboard-sidebar-pro" data-dash-sidebar id="dash-sidebar" aria-label="Admin sidebar">
+      <div class="dashboard-sidebar-pro__brand">
+        <strong>Admin console</strong>
+        <span>Operations &amp; pipeline</span>
+      </div>
+      <ul class="dashboard-nav-pro">
+        <li><a href="#overview" class="is-active">Overview</a></li>
+        <li><a href="#users">Users</a></li>
+        <li><a href="#inquiries">Service inquiries</a></li>
+        <li><a href="#messages">Messages</a></li>
+        <li><a href="#analytics">Analytics</a></li>
+        <li><a href="#reports">Reports</a></li>
+      </ul>
+    </aside>
+
+    <div class="dashboard-main-pro">
+      <button type="button" class="dash-sidebar-toggle" data-dash-sidebar-toggle aria-expanded="false" aria-controls="dash-sidebar">☰ Menu</button>
+
+      <div class="dashboard-top" id="overview">
+        <div>
+          <h1>Operations overview</h1>
+          <p style="margin:0.35rem 0 0;font-size:0.95rem;color:var(--color-muted)">Live snapshot of users, inquiries, and portal activity.</p>
+        </div>
+        <a class="btn btn--outline-dark" href="login.html">Sign out</a>
+      </div>
+
+      <div class="dash-stat-grid" aria-label="Key metrics">
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Active users</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--up">+4.2%</span>
+          </div>
+          <span class="dash-stat-card__value">1,284</span>
+          <span class="dash-stat-card__hint">vs prior 7 days</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Open inquiries</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--flat">Stable</span>
+          </div>
+          <span class="dash-stat-card__value">42</span>
+          <span class="dash-stat-card__hint">Across all stages</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Messages (7d)</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--up">+9%</span>
+          </div>
+          <span class="dash-stat-card__value">318</span>
+          <span class="dash-stat-card__hint">Threads + notifications</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-card__top">
+            <span class="dash-stat-card__label">Lead → win rate</span>
+            <span class="dash-stat-card__delta dash-stat-card__delta--down">−0.4pp</span>
+          </div>
+          <span class="dash-stat-card__value">3.8%</span>
+          <span class="dash-stat-card__hint">Rolling quarter</span>
+        </div>
+      </div>
+
+      <section id="analytics" class="dash-chart-grid" aria-label="Analytics charts">
+        <div class="dashboard-panel dash-chart-panel">
+          <div class="dashboard-panel__head">
+            <span>Weekly sessions</span>
+            <span class="dash-chart-panel__sub">Unique active sessions</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body">
+            <canvas id="admin-chart-sessions" aria-label="Line chart of sessions by day"></canvas>
+          </div>
+        </div>
+        <div class="dashboard-panel dash-chart-panel">
+          <div class="dashboard-panel__head">
+            <span>Inquiry pipeline</span>
+            <span class="dash-chart-panel__sub">Count by stage</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body">
+            <canvas id="admin-chart-stages" aria-label="Bar chart of inquiries by stage"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="dash-chart-grid" aria-label="Channel and utilization">
+        <div class="dashboard-panel dash-chart-panel dash-chart-panel--compact">
+          <div class="dashboard-panel__head">
+            <span>Lead sources</span>
+            <span class="dash-chart-panel__sub">Attributed mix</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body">
+            <canvas id="admin-chart-channels" aria-label="Doughnut chart of lead sources"></canvas>
+          </div>
+        </div>
+        <div class="dashboard-panel dash-chart-panel">
+          <div class="dashboard-panel__head">
+            <span>Delivery utilization</span>
+            <span class="dash-chart-panel__sub">Consulting bench — last 6 weeks</span>
+          </div>
+          <div class="dashboard-panel__body dash-chart-panel__body">
+            <canvas id="admin-chart-load" aria-label="Line chart of team utilization"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <div class="two-col-dash">
+        <div class="dashboard-panel" id="users">
+          <div class="dashboard-panel__head">User management</div>
+          <div class="dashboard-panel__body" style="overflow-x:auto">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Alex Rivera</td>
+                  <td>a.rivera@example.com</td>
+                  <td>Customer</td>
+                  <td><span class="badge badge--success">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Morgan Lee</td>
+                  <td>m.lee@example.com</td>
+                  <td>Customer</td>
+                  <td><span class="badge badge--pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Jamal Hussein</td>
+                  <td>j.hussein@example.com</td>
+                  <td>Admin</td>
+                  <td><span class="badge badge--success">Active</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="dashboard-panel" id="inquiries">
+          <div class="dashboard-panel__head">Service inquiries</div>
+          <div class="dashboard-panel__body" style="overflow-x:auto">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Service</th>
+                  <th>Company</th>
+                  <th>Stage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#INQ-2401</td>
+                  <td>Business consulting</td>
+                  <td>Vertex Holdings</td>
+                  <td><span class="badge badge--info">Qualified</span></td>
+                </tr>
+                <tr>
+                  <td>#INQ-2402</td>
+                  <td>Financial planning</td>
+                  <td>Pulse Health</td>
+                  <td><span class="badge badge--pending">Review</span></td>
+                </tr>
+                <tr>
+                  <td>#INQ-2403</td>
+                  <td>Corporate training</td>
+                  <td>Atlas Logistics</td>
+                  <td><span class="badge badge--success">Won</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-panel" id="messages">
+        <div class="dashboard-panel__head">Messages</div>
+        <div class="dashboard-panel__body" style="overflow-x:auto">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>From</th>
+                <th>Subject</th>
+                <th>Received</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sarah Chen</td>
+                <td>Q1 roadmap checkpoint</td>
+                <td>Today, 9:14 AM</td>
+              </tr>
+              <tr>
+                <td>James Okonkwo</td>
+                <td>Board pack — financial appendix</td>
+                <td>Yesterday</td>
+              </tr>
+              <tr>
+                <td>Elena Vasquez</td>
+                <td>Training rollout status</td>
+                <td>Apr 1, 2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dashboard-panel" id="reports">
+        <div class="dashboard-panel__head">Reports</div>
+        <div class="dashboard-panel__body">
+          <p style="margin:0 0 1rem;color:var(--color-muted)">Export pipeline health, utilization, and revenue recognition summaries.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
+            <button type="button" class="btn btn--ghost">Download utilization (CSV)</button>
+            <button type="button" class="btn btn--ghost">Pipeline snapshot (PDF)</button>
+            <button type="button" class="btn btn--primary">Schedule monthly report</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

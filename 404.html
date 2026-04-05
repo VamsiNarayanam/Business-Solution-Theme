@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found — Stackly Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
+</head>
+<body class="page-inner">
+  <header class="site-header" id="site-header" data-header>
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html" aria-label="Stackly home">
+        <img class="logo__img" src="images/stackly-logo.webp" alt="" width="160" height="40" decoding="async">
+      </a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-wrap" aria-label="Open menu">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <div class="site-header__nav-wrap" id="nav-wrap">
+        <div class="site-header__nav-inner">
+          <nav class="site-header__nav" aria-label="Main navigation">
+            <ul class="nav-list">
+              <li><a class="nav-link" href="index.html" data-nav-file="index.html">Home</a></li>
+              <li><a class="nav-link" href="about.html" data-nav-file="about.html">About</a></li>
+              <li><a class="nav-link" href="services.html" data-nav-file="services.html">Services</a></li>
+              <li><a class="nav-link" href="pricing.html" data-nav-file="pricing.html">Pricing</a></li>
+              <li><a class="nav-link" href="contact.html" data-nav-file="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+          <div class="site-header__actions">
+            <a class="btn btn--nav-login" href="login.html" data-nav-file="login.html">Login</a>
+            <a class="btn btn--nav-register" href="register.html" data-nav-file="register.html">Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main error-page">
+    <h1>404</h1>
+    <h2>Page not found</h2>
+    <p class="lead" style="max-width:28rem;margin:0 auto 1.5rem">The page you are looking for may have been moved or removed.</p>
+    <div class="error-page__actions">
+      <a class="btn btn--primary" href="index.html">Back to home</a>
+      <button type="button" class="btn btn--outline-dark" id="error-go-back">Go back</button>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
