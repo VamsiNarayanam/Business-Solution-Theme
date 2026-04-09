@@ -1,6 +1,16 @@
 (function () {
   "use strict";
 
+    const preloader = document.getElementById("preloader");
+  if (preloader) {
+    window.addEventListener("load", function () {
+      setTimeout(function () {
+        preloader.classList.add("preloader--hide");
+      }, 1500);
+    });
+  }
+
+
   var HEADER_SEL = "[data-header]";
   var NAV_WRAP_SEL = "#nav-wrap";
   var TOGGLE_SEL = "#nav-toggle";
